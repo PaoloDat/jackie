@@ -1,4 +1,4 @@
-package ru.vazisu.jackie.model;
+package ru.vazisu.jackie.xlsxmodel;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Draw {
+public class XLSXDraw {
 
     private int number;
     private Date date;
 
-    private List<Game> gameList = new ArrayList<>();
+    private List<XLSXGame> gameList = new ArrayList<>();
 }

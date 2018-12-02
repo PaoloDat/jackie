@@ -1,11 +1,11 @@
-package ru.vazisu.jackie.model;
+package ru.vazisu.jackie.xlsxmodel;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Game {
+public class XLSXGame {
 
     private int numberAtDraw;
 

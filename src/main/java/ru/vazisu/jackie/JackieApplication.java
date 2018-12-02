@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JackieApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(JackieApplication.class, args);
+
     }
 }

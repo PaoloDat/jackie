@@ -1,12 +1,12 @@
-package ru.vazisu.jackie.parser;
+package ru.vazisu.jackie.xlsxparser;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ru.vazisu.jackie.model.Draw;
-import ru.vazisu.jackie.model.Game;
+import ru.vazisu.jackie.xlsxmodel.XLSXDraw;
+import ru.vazisu.jackie.xlsxmodel.XLSXGame;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,15 +17,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Getter
-@Setter
 public class XLSXParser {
     private String fileName;
     private FileInputStream fileInputStream;
     private XSSFWorkbook workBook;
     private XSSFSheet sheet;
-    private Map<Integer, Draw> map = new HashMap<>();
-    private List<Game> gameList;
+    @Getter
+    @Setter
+    private Map<Integer, XLSXDraw> map = new HashMap<>();
+    private List<XLSXGame> gameList;
 
     public XLSXParser() {
     }
@@ -36,22 +36,8 @@ public class XLSXParser {
         getFile();
         getWorkBook();
         getSheet();
-        getdrawMap();
-
-
-        map.keySet().stream()
-                .filter( (index) -> map.get(index).getNumber() >984)
-                .forEach( (index) -> {
-                    System.out.println(map.get(index).getNumber()
-                    + " " + map.get(index).getDate()+ " ") ;
-                    map.get(index).getGameList().forEach( (game -> {
-                        System.out.println(game.getHomeTeam() + " " + " " +
-                        game.getHomeTeamScore());
-                    }));
-                });
-
-
-
+        getDrawMap();
+//        printMap();
 
     }
 
@@ -68,10 +54,10 @@ public class XLSXParser {
         sheet = workBook.getSheetAt(0);
     }
 
-    private Map<Integer, Draw> getdrawMap () {
+    private Map<Integer, XLSXDraw> getDrawMap() {
         for (Row row : sheet){
 
-            Draw draw = new Draw();
+            XLSXDraw draw = new XLSXDraw();
             gameList = new ArrayList<>();
 
             draw.setNumber((int) Math.round(row.getCell(0).getNumericCellValue()));
@@ -81,7 +67,7 @@ public class XLSXParser {
 
             for (int i = 34; i < 175; i = i+10){
                 number++;
-                Game game = new Game();
+                XLSXGame game = new XLSXGame();
                 game.setNumberAtDraw(number);
                 game.setTournamentType(row.getCell(i).getStringCellValue());
                 game.setTournamentName(row.getCell(i).getStringCellValue());
@@ -103,5 +89,18 @@ public class XLSXParser {
 
         }
         return map;
+    }
+
+    private void printMap(){
+        map.keySet().stream()
+                .filter( (index) -> map.get(index).getNumber() >0)
+                .forEach( (index) -> {
+                    System.out.println(map.get(index).getNumber()
+                            + " " + map.get(index).getDate()+ " ") ;
+                    map.get(index).getGameList().forEach( (game -> {
+                        System.out.println(game.getHomeTeam() + " " + " " +
+                                game.getHomeTeamScore());
+                    }));
+                });
     }
 }
