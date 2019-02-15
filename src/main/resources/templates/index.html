@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu</title>
+</head>
+<body>
+    <h1>Welcome to Clan</h1>
+
+
+
+    <p>Статистика тиража</p>
+    <form action="#" th:action="@{/drawstat}" th:object="${size}" method="post">
+        <input type="text" th:field="*{size}">
+        <input type="submit" value="Number of draws">
+    </form>
+
+    <p>Статистика матча</p>
+    <form action="#" th:action="@{/gamestat}" th:object="${gamestat}" method="post">
+        <input type="text" th:field="*{tournamentName}" placeholder="Tournament Name">
+        <input type="text" th:field="*{homeTeamName}" placeholder="homeTeamName">
+        <input type="text" th:field="*{awayTeamName}" placeholder="awayTeamName">
+        <br/>
+        <p>Показатели FON</p>
+        <input type="text" th:field="*{fonHome}" placeholder="fonHome">
+        <input type="text" th:field="*{fonDraw}" placeholder="fonDraw">
+        <input type="text" th:field="*{fonAway}" placeholder="fonAway">
+        <br/>
+        <p>Показатели MAN</p>
+        <input type="text" th:field="*{manHome}" placeholder="manHome">
+        <input type="text" th:field="*{manDraw}" placeholder="manDraw">
+        <input type="text" th:field="*{manAway}" placeholder="manAway">
+        <br/>
+        <br/>
+        <input type="submit" value="Submit game stat">
+    </form>
+
+</body>
+</html>

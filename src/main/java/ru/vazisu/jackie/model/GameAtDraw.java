@@ -1,13 +1,15 @@
 package ru.vazisu.jackie.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "draws")
 public class GameAtDraw {
@@ -30,7 +32,4 @@ public class GameAtDraw {
     private double manHome;
     private double manDraw;
     private double manAway;
-
-    public GameAtDraw() {
-    }
 }

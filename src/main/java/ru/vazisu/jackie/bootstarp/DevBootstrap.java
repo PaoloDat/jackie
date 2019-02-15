@@ -1,5 +1,6 @@
 package ru.vazisu.jackie.bootstarp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private GameAtDrawRepository gameAtDrawRepository;
@@ -22,18 +24,19 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-//        try {
-//            fillGameData();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+        initData();
+        log.info("parsing has been finished");
+
+
     }
 
     private void initData(){
-        GameAtDraw gameAtDraw = new GameAtDraw();
-
-        gameAtDrawRepository.save(gameAtDraw);
-
+        try {
+            fillGameData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void fillGameData() throws IOException {

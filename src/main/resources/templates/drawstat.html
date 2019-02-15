@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu</title>
+</head>
+<body>
+<h1>Draw statistic</h1>
+
+    <table>
+        <tr>
+            <th>Тираж</th>
+            <th>Home</th>
+            <th>Draw</th>
+            <th>Away</th>
+        </tr>
+        <tbody>
+            <tr th:each="stat : ${drawstat}">
+                <td th:text="${stat.getDrawNumber()}"></td>
+                <td th:text="${stat.getHomeWin()}"></td>
+                <td th:text="${stat.getDraw()}"></td>
+                <td th:text="${stat.getAwayWin()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <th>Тираж</th>
+            <th>FonP</th>
+            <th>FonM</th>
+            <th>FonUN</th>
+            <th>ManP</th>
+            <th>ManM</th>
+            <th>ManUN</th>
+        </tr>
+        <tbody>
+        <tr th:each="stat : ${drawstat}">
+            <td th:text="${stat.getDrawNumber()}"></td>
+            <td th:text="${stat.getFonPull()}"></td>
+            <td th:text="${stat.getFonMiddle()}"></td>
+            <td th:text="${stat.getFonUnPull()}"></td>
+            <td th:text="${stat.getManPull()}"></td>
+            <td th:text="${stat.getManMiddle()}"></td>
+            <td th:text="${stat.getFonUnPull()}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
