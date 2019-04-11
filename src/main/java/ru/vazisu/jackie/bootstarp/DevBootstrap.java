@@ -25,8 +25,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        initData();
-        log.info("parsing has been finished");
+//        заполнение таблицы тиражей из файла src/main/resources/fondb/test.xlsx
+//        initData();
+//        log.info("parsing has been finished");
 
 
     }
